@@ -38,15 +38,12 @@ canvas2.addEventListener("mousemove",(event)=>{
                 context2.stroke();
                 context2.moveTo(x1,y1);
                 context2.lineTo(x2,y2);
-                context2.strokeStyle = "black";
-                
-                // context2.lineCap = 'round';
-                // context2.lineJoin = 'round';
+                context2.strokeStyle = setcolor;
                 context2.stroke();
-                // context2.beginPath();
+               
                 
 
-                drawing_Pen.push({ free_x: x1, free_y: y1,free_x2: x2,free_y2: y2,free_width:pen_width });
+                drawing_Pen.push({ free_x: x1, free_y: y1,free_x2: x2,free_y2: y2,color:setcolor,free_width:pen_width });
                 initial_point_free_x=x2;
                 initial_point_free_y=y2;
                 
@@ -58,10 +55,8 @@ canvas2.addEventListener("mousemove",(event)=>{
 canvas2.addEventListener("mouseup",(event)=>{
        
       Drawing_start4=false;
-    //   context2.beginPath();
+   
       context2.clearRect(0, 0, canvas2.width, canvas2.height);
        redrawLines();
      
 })
-
-// console.log(drawing_Pen);

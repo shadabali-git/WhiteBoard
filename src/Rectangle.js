@@ -8,28 +8,12 @@ document.getElementById("Rectangle").addEventListener("click",()=>{
 
 })
 
-class Rectangle{
-  constructor(x_react,y_react,x2_react,y2_react,color){
-      this.x_react=x_react;
-      this.y_react=y_react;
-      this.x2_react = x2_react
-      this.y2_react= y2_react
-      this.color=color
-  }
-  drawRectangle(ctx){
-       ctx.strokeStyle="black";
-       ctx.beginPath();
-       ctx.rect(this.x_react,this.y_react,this.x2_react,this.y2_react);
-       ctx.closePath();
-       ctx.stroke();
 
-  }
-}
 
 function drawMainRectangle(x1,y1,x2,y2){
   if(Drawing_start3==1){
 
-      let Circle1=new Rectangle(x1,y1,x2,y2,"black");
+      let Circle1=new Rectangle(x1,y1,x2,y2,setcolor,pen_width);
        
       Circle1.drawRectangle(context2);
 
@@ -39,7 +23,7 @@ function drawMainRectangle(x1,y1,x2,y2){
     }
     else if(Drawing_start3==3){
 
-      let Circle1=new Rectangle(x1,y1,x2,y2,"black");
+      let Circle1=new Rectangle(x1,y1,x2,y2,setcolor,pen_width);
        
       Circle1.drawRectangle(context2);
 
@@ -88,7 +72,7 @@ canvas2.addEventListener("mousemove",(event)=>{
           
           context2.clearRect(0, 0, canvas2.width, canvas2.height);
           
-          drawMainRectangle(intial_point_x_Rect,intial_point_y_Rect,final_point_x_Rect,final_point_y_React);
+          drawMainRectangle(intial_point_x_Rect,intial_point_y_Rect,final_point_x_Rect,final_point_y_React,setcolor,pen_width);
           
        
 
@@ -114,7 +98,7 @@ canvas2.addEventListener("mouseup",(event)=>{
                final_point_x_Rect=x-intial_point_x_Rect;
                final_point_y_React=y-intial_point_y_Rect;
 
-               drawMainRectangle(intial_point_x_Rect,intial_point_y_Rect,final_point_x_Rect,final_point_y_React);
+               drawMainRectangle(intial_point_x_Rect,intial_point_y_Rect,final_point_x_Rect,final_point_y_React,setcolor,pen_width);
               
 
 

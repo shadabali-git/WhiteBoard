@@ -6,27 +6,12 @@ document.getElementById("circle").addEventListener("click",()=>{
 
 })
 
-class Circle{
-    constructor(x,y,radius,color){
-        this.x=x;
-        this.y=y;
-        this.radius=radius;
-        this.color=color
-    }
-    drawCircle(ctx){
-         ctx.strokeStyle=this.color;
-         ctx.beginPath();
-         ctx.arc(this.x,this.y,this.radius,0,Math.PI*2,false);
-         ctx.closePath();
-         ctx.stroke();
 
-    }
-}
 
-function drawMainCircle(x1,y1,radius,color){
+function drawMainCircle(x1,y1,radius,color,width){
     if(Drawing_start==1){
 
-        let Circle1=new Circle(x1,y1,radius,color);
+        let Circle1=new Circle(x1,y1,radius,color,width);
          
         Circle1.drawCircle(context2);
  
@@ -36,7 +21,7 @@ function drawMainCircle(x1,y1,radius,color){
       }
       else if(Drawing_start==3){
 
-        let Circle1=new Circle(x1,y1,radius,color);
+        let Circle1=new Circle(x1,y1,radius,color,width);
          
         Circle1.drawCircle(context2);
 
@@ -88,7 +73,7 @@ canvas2.addEventListener("mousemove",(event)=>{
             
             context2.clearRect(0, 0, canvas2.width, canvas2.height);
             
-            drawMainCircle(centrex,centrey,radius,"black");
+            drawMainCircle(centrex,centrey,radius,setcolor,pen_width);
             
          
 
@@ -108,7 +93,7 @@ canvas2.addEventListener("mouseup",(event)=>{
                  Drawing_start=3;
                  const { x, y } = getMousePosition(event);
                  context2.clearRect(0, 0, canvas2.width, canvas2.height);
-                 drawMainCircle(final_point_x,final_point_y,radius,"black");
+                 drawMainCircle(final_point_x,final_point_y,radius,setcolor,pen_width);
                
 
 
@@ -120,6 +105,4 @@ canvas2.addEventListener("mouseup",(event)=>{
     redrawLines();
 
 })
-// console.log("woring");
-// console.log(Array_circle);
 

@@ -10,10 +10,11 @@
        
 </head>
 <body> 
-  <canvas id="whiteboard" style="position: absolute;"></canvas>
+  <canvas id="whiteboard"  style="position: absolute;"></canvas>
   <canvas id="current" style="position: absolute;" ></canvas>
 
-    
+    <!-- <button class="changecanvas" style="position: fixed; z-index: 100; width: 300px; height:100px; left:500px">click me </button> -->
+    <!-- <button class="changecanvas2" style="position: fixed; z-index: 100; width: 300px; height:100px; left:900px">click 2</button> -->
     <div id="nav-bar">
         
         <div id="nav-header"><a id="nav-title" href="#" target="_blank">White Board</a>
@@ -33,14 +34,15 @@
             <li id="color6" class="btn_color">Brown</li>
 
       </div>
-          <div class="nav-button" id="eraser" ><i class="fas fa-images"></i><span> Erase</span></div>
-          <div  class="nav-button" id="Delete_Eraser">Remove Eraser</div>
+          <div class="nav-button" style="background-color: black;" id="eraser" ><i class="fas fa-images"></i><span > Erase</span></div>
+          <div  class="nav-button" id="Delete_Eraser" >Remove Eraser</div>
           <div class="nav-button"><input id="input" type="range" name="" id="" min="1" max="20"></div>
           <div class="nav-button" id="shapes"> <i class="fas fa-images"></i><span> Shapes </span></div>
-          <div class="nav-button" id="Restore"> Edit Line</div>
+          <div class="nav-button" id="Restore" style="background-color: black;"> Edit Line</div>
           <div class="nav-button" id="Line"> Line </div>
           <div class="nav-button" id="circle"> Circle</div>
           <div class="nav-button" id="Rectangle"> Rectangle</div>
+          <div class="nav-button" id="clear_Board">Clear Board</div>
           
         
           
@@ -64,7 +66,7 @@
 
               </div>
 
-    
+    <script src="src/class.js"></script>
    <script src="src/script.js"></script>
     <script src="./src/Line.js"></script>
     <script src="./src/circle.js"></script>

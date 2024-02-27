@@ -10,10 +10,10 @@ class Line {
     }
 
     draw(ctx) {
-
+        ctx.beginPath()
         ctx.lineWidth=this.width;
         ctx.strokeStyle=this.color;
-        ctx.beginPath()
+        
         ctx.moveTo(this.x,this.y);
         ctx.lineTo(this.x2,this.y2);
         ctx.stroke();
@@ -49,7 +49,7 @@ function drawLine(x1,y1,x,y,setcolor,pen_width){
        
 }
 
-console.log(a);
+
 
 
 
@@ -72,7 +72,7 @@ let y1=0;
           
       })
       canvas2.addEventListener("mousemove",(event)=>{
-        // okkey();
+       
         redrawLines();
         
            if(LineDraw==1){
@@ -105,12 +105,13 @@ let y1=0;
                   draggingLiney += dy;
                   draggingLinex2 += dx;
                   draggingLiney2 += dy;
-                  context2.lineWidth=pen_width;
-                  context2.strokeStyle=setcolor;
-                  context2.moveTo(draggingLinex,draggingLiney);
-                  context2.lineTo(draggingLinex2,draggingLiney2);
-                  context2.stroke();
 
+                  let Line1=new Line(draggingLinex,draggingLiney,draggingLinex2,draggingLiney2,draggingLine_color,draggingLine_width);
+         
+                  Line1.draw(context2);
+           
+
+                  
 
 
 
@@ -126,14 +127,18 @@ let y1=0;
             
             mousedown=false;
           if(LineDraw==1){
+
             LineDraw=2;
 
              const { x, y } = getMousePosition(event);
+
              context2.clearRect(0, 0, canvas2.width, canvas2.height);
+            
              drawLine(x1,y1,x,y,setcolor,pen_width);
 
              
              }
+
              else if(Drawing==4){
                Drawing=3;
              
@@ -161,8 +166,10 @@ document.getElementById('Restore').addEventListener('click',()=>{
          canvas.style.zIndex="10";
          canvas2.style.zIndex="1";
           Drawing=3;
+          // console.log(a);
+          redrawLines();
           
-          context2.clearRect(0, 0, canvas2.width, canvas2.height);
+          
 })
  
 
@@ -180,14 +187,19 @@ document.getElementById('Restore').addEventListener('click',()=>{
   let diff=-1;
 
 canvas.addEventListener("mousedown",()=>{
-    // console.log(Drawing)
-    Drawing=4;
-    // console.log(Drawing)
+    
+    if(Drawing==4){
+   
     a.splice(line_index,1);
-    redrawLines();
-    let obj1=a[line_index];
-    redrawLines2(obj1.x, obj1.y,obj1.x2, obj1.y2,obj1.color,obj1.pen_width);
 
+    canvas.style.zIndex="1";
+    canvas2.style.zIndex="10";
+    
+    redrawLines();
+
+    }
+     
+    
      
     
 })  
@@ -197,6 +209,7 @@ canvas.addEventListener("mousedown",()=>{
 
 canvas.addEventListener('mousemove', (event) => {
 
+  // a[line_index].color=getcolor;
    redrawLines();
  
 
@@ -204,12 +217,12 @@ if(Drawing==3){
     
   const { x, y } = getMousePosition(event);
 
-            
+ 
 
   for (let i=0;i<a.length;i++) {
-      //  redrawLines();
-       let o=a[i]
-      // o.color="black";
+     
+       let o=a[i];
+    
   if((o.x<=x && x<o.x2 && o.y<y && y<o.y2)
                    || (o.x>x && x>o.x2 && o.y<=y && y<o.y2)
                    ||  (o.x<=x && x<o.x2 && o.y>y && y>o.y2)
@@ -218,12 +231,12 @@ if(Drawing==3){
               ){
             
 
-
+      
              let line_slope=(o.y2-o.y)/(o.x2-o.x);
              let line_point_slope=(o.y2-y)/(o.x2-x);
 
                 
-             diff= Math.floor(Math.abs(line_slope-line_point_slope));
+             diff=Math.abs(line_slope-line_point_slope);
 
 
       draggingLinex = o.x;
@@ -237,27 +250,31 @@ if(Drawing==3){
                 
               }
             
-             else{ 
+             else{
+              
               diff=-1;
+              
              }
 
           
 
-    const tolerance= 1;
+    const tolerance= 2;
     let getcolor=o.color;
     
 
     if ( diff < tolerance &&  diff!=-1) {
-     
-      getcolor=o.color;
 
-       a[i].color="red";
+      
+
+      redrawLines2(draggingLinex,draggingLiney,draggingLinex2,draggingLiney2,draggingLine_color,draggingLine_width);
        
-       if(diff==-1){
+      getcolor=o.color;
+       
+       a[i].color="red";
 
-        a[i].color=getcolor;
-           
-       }
+       Drawing=4;
+       
+
       
         break;
 
@@ -268,10 +285,14 @@ if(Drawing==3){
 
     
     }
-    else{
-      a[i].color=getcolor;
+   
+    
 
-    }
+   
+
+
+    
+    
 
     
   }
@@ -283,7 +304,7 @@ canvas.addEventListener("mouseup",(even)=>{
   
         if(Drawing==4){
            
-          let Line1=new Line(draggingLinex,draggingLiney,draggingLinex2,draggingLiney2,draggingLine_color,draggingLine_width);
+          let Line1=new Line(draggingLinex,draggingLiney,draggingLinex2,draggingLiney2,getcolor,draggingLine_width);
          
           Line1.draw(context2);
           a.push(Line1);
@@ -299,18 +320,12 @@ canvas.addEventListener("mouseup",(even)=>{
 
 function redrawLines2(a,b,c,d,e,f){
   
-  context2.clearRect(0, 0, canvas2.width, canvas2.height);
+    context2.clearRect(0, 0, canvas2.width, canvas2.height);
        
-    context2.strokeStyle=e;
-    context2.lineWidth=f;
-    context2.setLineDash([]);
-    context2.beginPath();
-    context2.moveTo(a,b);
-    context2.lineTo(c, d);
-    context2.stroke();
-  
-    canvas.style.zIndex="1";
-    canvas2.style.zIndex="10";
+    
+    let move_line=new Line(a,b,c,d,f);
+    
+    move_line.draw(context2);
 
 
 }
@@ -318,17 +333,6 @@ function redrawLines2(a,b,c,d,e,f){
 
 
 
-
-
-const Remove_eraser=document.getElementById('Delete_Eraser');
-
-Remove_eraser.addEventListener("click",()=>{
-     
-       eraser.length=0;
-        redrawLines();
-})
-
-   
     
     
   

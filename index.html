@@ -1,77 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whiteboard Pen</title>
-    <link rel="stylesheet" href="src/style.css">
-    
-       
-       
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whiteboard Pen</title>
+  <link rel="stylesheet" href="src/style.css">
+  <link href="/src/output.css" rel="stylesheet">
+
+
+
+
 </head>
-<body> 
-  <canvas id="whiteboard"  style="position: absolute;"></canvas>
-  <canvas id="current" style="position: absolute;" ></canvas>
 
-    <!-- <button class="changecanvas" style="position: fixed; z-index: 100; width: 300px; height:100px; left:500px">click me </button> -->
-    <!-- <button class="changecanvas2" style="position: fixed; z-index: 100; width: 300px; height:100px; left:900px">click 2</button> -->
-    <div id="nav-bar">
-        
-        <div id="nav-header"><a id="nav-title" href="#" target="_blank">White Board</a>
-         
-        </div>
-        <div id="nav-content">
-          <div class="nav-button" id="free_pen"><i class="fas fa-palette"></i><span>Pen</span></div>
-          <div class="nav-button" id="pen_color"> Select color 
-                          
-          </div>
-          <div class="new" id="select_one">
-            <li id="color1" class="btn_color">Blue</li>
-            <li id="color2" class="btn_color">Black</li>
-            <li id="color3" class="btn_color">Yellow</li>
-            <li id="color4" class="btn_color">Green</li>
-            <li id="color5" class="btn_color">Pink</li>
-            <li id="color6" class="btn_color">Brown</li>
+<body class="overflow-hidden w-screen h-screen m-0 p-0">
+  <canvas id="whiteboard" class="absolute cursor-crosshair"></canvas>
+  <canvas id="current" class="absolute cursor-crosshair"></canvas>
+  <div id="nav-bar" class="absolute bg-gray-800 text-white p-4 w-96 h-full m-2 flex flex-col z-10">
+
+    
+    <div id="nav-content" class="flex flex-col items-center w-full gap-5 h-full">
+
+      <div id="nav-header" class="flex items-center w-full justify-center">
+        <a id="nav-title" class="text-2xl md:text-3xl" href="#" target="_blank">White Board</a>
+      </div>
+      <button
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+        id="free_pen">
+        <span
+          class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Pen</span>
+      </button>
+      <button id="pen_color"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+        id="free_pen">
+        <span
+          class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Select Color</span>
+      </button>
+      
+      <div class="new" id="select_one">
+        <li id="color1" class="btn_color">Blue</li>
+        <li id="color2" class="btn_color">Black</li>
+        <li id="color3" class="btn_color">Yellow</li>
+        <li id="color4" class="btn_color">Green</li>
+        <li id="color5" class="btn_color">Pink</li>
+        <li id="color6" class="btn_color">Brown</li>
 
       </div>
-          <div class="nav-button" style="background-color: black;" id="eraser" ><i class="fas fa-images"></i><span > Erase</span></div>
-          <div  class="nav-button" id="Delete_Eraser" >Remove Eraser</div>
-          <div class="nav-button"><input id="input" type="range" name="" id="" min="1" max="20"></div>
-          <div class="nav-button" id="shapes"> <i class="fas fa-images"></i><span> Shapes </span></div>
-          <div class="nav-button" id="Restore" style="background-color: black;"> Edit Line</div>
-          <div class="nav-button" id="Line"> Line </div>
-          <div class="nav-button" id="circle"> Circle</div>
-          <div class="nav-button" id="Rectangle"> Rectangle</div>
-          <div class="nav-button" id="clear_Board">Clear Board</div>
-          
-        
-          
-         
-         
-        </div>
-       
-       
-      </div>
-  
-       
-              <div class="arrow">
-                        
-                     !! Bugs  in
-                     <p>Eraser</p>
-                  
+      <button id="eraser"
+        class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+        id="free_pen">
+        <span
+          class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Erase</span>
+      </button>
+      <button id="Delete_Eraser"
+      class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+      id="free_pen">
+      <span
+        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Remove Eraser</span>
+    </button>
+      <button class="nav-button"><input id="input" type="range" name="" id="" min="1" max="20"></button>
 
-              </div>
-        
-              <div>
+      <button  id="shapes"
+      class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+      id="free_pen">
+      <span
+        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Shapes</span>
+    </button>
 
-              </div>
+    <button id="Restore"
+      class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+      id="free_pen">
+      <span
+        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Edit Line</span>
+    </button>
+    
+    <button id="Line"
+      class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+      id="free_pen">
+      <span
+        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Line</span>
+    </button>
+    
+    <button id="circle"
+      class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+      id="free_pen">
+      <span
+        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Circle</span>
+    </button>
+    
+    <button id="Rectangle"
+      class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+      id="free_pen">
+      <span
+        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Rectangle</span>
+    </button>
+    
+    <button id="clear_Board"
+      class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+      id="free_pen">
+      <span
+        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">Clear Board</span>
+    </button>
 
-    <script src="src/class.js"></script>
-   <script src="src/script.js"></script>
-    <script src="./src/Line.js"></script>
-    <script src="./src/circle.js"></script>
-    <script src="./src/Rectangle.js"></script>
-    <script src="./src/Free_pen.js"></script>
-    <script src="./src/Eraser.js"></script>
+
+
+
+
+    </div>
+
+
+  </div>
+
+  <script src="src/class.js"></script>
+  <script src="src/script.js"></script>
+  <script src="./src/Line.js"></script>
+  <script src="./src/circle.js"></script>
+  <script src="./src/Rectangle.js"></script>
+  <script src="./src/Free_pen.js"></script>
+  <script src="./src/Eraser.js"></script>
 </body>
+
 </html>

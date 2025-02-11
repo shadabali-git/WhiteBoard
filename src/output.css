@@ -1,50 +1,4 @@
 /*! tailwindcss v4.0.6 | MIT License | https://tailwindcss.com */
-#select_one {
-  flex-wrap: wrap;
-}
-#select_one>li {
-  list-style: none;
-}
-#select_one>li:hover {
-  color: none;
-}
-.btn_color {
-  margin: 5px;
-}
-.new {
-  position: relative;
-  padding: 0;
-  margin: 20px;
-  width: 80%;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgb(255, 255, 255);
-  background-color: rgb(123, 195, 255);
-  display: none;
-  cursor: pointer;
-  z-index: 1;
-  height: auto;
-}
-#color1:hover {
-  color: blue;
-}
-#color2:hover {
-  color: black;
-}
-#color3:hover {
-  color: yellow;
-}
-#color4:hover {
-  color: green;
-}
-#color5:hover {
-  color: pink;
-}
-#color6:hover {
-  color: rgb(180, 87, 87);
-}
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -570,6 +524,15 @@
   .relative {
     position: relative;
   }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .right-0 {
+    right: calc(var(--spacing) * 0);
+  }
+  .left-0 {
+    left: calc(var(--spacing) * 0);
+  }
   .z-10 {
     z-index: 10;
   }
@@ -585,8 +548,14 @@
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
   }
+  .block {
+    display: block;
+  }
   .flex {
     display: flex;
+  }
+  .hidden {
+    display: none;
   }
   .inline-flex {
     display: inline-flex;
@@ -609,14 +578,23 @@
   .cursor-crosshair {
     cursor: crosshair;
   }
+  .cursor-pointer {
+    cursor: pointer;
+  }
   .flex-col {
     flex-direction: column;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
   }
   .items-center {
     align-items: center;
   }
   .justify-center {
     justify-content: center;
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
   }
   .gap-5 {
     gap: calc(var(--spacing) * 5);
@@ -654,6 +632,9 @@
   .p-0\.5 {
     padding: calc(var(--spacing) * 0.5);
   }
+  .p-1 {
+    padding: calc(var(--spacing) * 1);
+  }
   .p-4 {
     padding: calc(var(--spacing) * 4);
   }
@@ -667,13 +648,24 @@
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
   .text-sm {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
   }
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
+  }
+  .text-black {
+    color: var(--color-black);
   }
   .text-gray-900 {
     color: var(--color-gray-900);
@@ -714,6 +706,14 @@
       @media (hover: hover) {
         --tw-gradient-to: var(--color-blue-500);
         --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+      }
+    }
+  }
+  .hover\:border {
+    &:hover {
+      @media (hover: hover) {
+        border-style: var(--tw-border-style);
+        border-width: 1px;
       }
     }
   }
@@ -853,6 +853,11 @@
 @property --tw-ease {
   syntax: "*";
   inherits: false;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
 }
 @property --tw-shadow {
   syntax: "*";

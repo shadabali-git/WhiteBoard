@@ -19,7 +19,6 @@ const rect = canvas2.getBoundingClientRect();
 
 
 
-
  const pen_value= document.getElementById('input');
 
  const pen_color=document.getElementById('pen_color');
@@ -33,7 +32,7 @@ let Array_Rectangle=[];
 let Array_circle=[];
 let drawing_Pen = [];
 let eraser=[];
-let Drawing=0;
+let Drawing=8;
 let mousedown=false;
 let pen_width=5;
 let setcolor="black";
@@ -74,7 +73,7 @@ const Remove_eraser=document.getElementById('Delete_Eraser');
 
 Remove_eraser.addEventListener("click",()=>{
      
-       eraser.length=0;
+        eraser=[]
         redrawLines();
 })
 
@@ -202,7 +201,6 @@ function redrawLines() {
   
     
   }
-  
 
  const eraseAll= document.querySelector('#clear_Board');
 
@@ -217,4 +215,19 @@ function redrawLines() {
           redrawLines();
 
   })
+
+  
+const closeNavbarButton = document.getElementById('close-nav');
+const openNavbarButton = document.getElementById('open-nav');
+const navbar = document.getElementById('nav-bar');
+
+  closeNavbarButton.addEventListener('click', () => {
+    navbar.style.display = 'none';
+    openNavbarButton.style.display = 'block';
+  });
+  openNavbarButton.addEventListener('click', () => {
+    navbar.style.display = 'flex';
+    openNavbarButton.style.display = 'none';
+    
+  });
      
